@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>ADD-PAGE</title>
+    <link rel="stylesheet" th:href="@{/css/add.css}" />
+</head>    
+<body>
+    <div class="container">
+		<a th:href="@{/employee/all}"><button >	LIST</button></a>
+		
+        <form action="#" th:action="@{/employee/addemmployee}" th:object="${employee}" method="post">
+			<label>NAME</label>
+            <input type="text" th:field="*{name}" placeholder="NAME" required/>
+			<label>DAYS</label>
+            <input type="number" th:field="*{days}" placeholder="DAYS" required/>
+			<label>SALARY</label>
+            <input type="number" th:field="*{salary}" placeholder="SALARY" required/>
+			<button type="submit" class="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

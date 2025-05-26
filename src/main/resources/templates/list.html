@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>INDEX-PAGE</title>
+	<link rel="stylesheet" th:href="@{/css/list.css}" />
+</head>	
+
+<body>
+	<div class="container">
+		<div>
+		    <a th:href="@{/employee/home}"><button>HOME</button></a>
+			<a th:href="@{/employee/add}"><button>ADD NEW</button></a>
+		</div>
+		<table >
+			<thead>
+				<tr>
+					<th>EMPLOYEE ID</th>
+					<th>EMPLOYEE NAME</th>
+					<th>EMPLOYEE DAYS</th>
+					<th>EMPLOYEE SALARY(Rs)</th>	
+					<th class="ActionButton">ACTION</th>
+				</tr> 
+			</thead>
+			<tbody>
+				<tr th:each="employee : ${ListEmployee}">
+					<td th:text="${employee.id}">ID</td>
+					<td th:text="${employee.name}">Name</td>
+					<td th:text="${employee.days}">Days</td>
+					<td th:text="${employee.salary}">Salary</td>
+					<td><a th:href="@{/employee/updateForm/{id}(id=${employee.id})}"><img src="/css/editicon.svg" width="16" height="16"></a>
+						<a th:href="@{/employee/deleteEmployee/{id}(id=${employee.id})}"><img src="/css/deleteicon.svg" width="16" height="16"></a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="footer">
+			<a th:href="${currentPage == 1} ? '#' :@{/employee/page/{page}(page=${currentPage - 1})}"><img src="/css/lefticon.svg" width="20" height="20" class="footerA"></a>
+			<h4 th:text="${currentPage} +'|'+ ${totalpages}" ></h4>
+			<a th:href="${currentPage == totalpages} ? '#' :@{/employee/page/{page}(page=${currentPage + 1})}"><img src="/css/righticon.svg" width="20" height="20" class="footerA"></a>
+		</div>
+	</div>
+</body>
+</html>
